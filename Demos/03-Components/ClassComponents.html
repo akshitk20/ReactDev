@@ -31,8 +31,9 @@
 
     class ItemsList extends React.Component {
         render() {
+            const tagName = this.props.isOrdered ? 'ol' : 'ul';
             return React.createElement(
-                "ul", 
+                tagName, 
                 null,
                 this.props.items.map((item, i) => React.createElement("li", {key: i}, item))
             )
@@ -43,9 +44,9 @@
         render() {
             return React.createElement('div', null,
                 React.createElement('h1', null, 'Catalog'),
-                React.createElement(ItemsList, {items: products}, null),
+                React.createElement(ItemsList, {items: products, isOrdered:true}, null),
                 React.createElement('h1', null, 'Shops'),
-                React.createElement(ItemsList, {items: shops}, null)
+                React.createElement(ItemsList, {items: shops, isOrdered:false}, null)
             )
         }
     }

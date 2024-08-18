@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creating mulitple elements via data</title>
+
+</head>
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <script>
+        const teams = ['Real Madrid', 'Manchester City', 'Liverpool', 'Bayern Munich', 'Manchester United','Barcelona'];
+        const players = ['Cristiano Ronaldo', 'Wayne Rooney', 'Mo Salah', 'Luis Diaz','Lionel Messi','Vinicius Jr', 'Kylian Mbappe'];
+
+        const teamsList = React.createElement('ul', 
+        null, 
+        teams.map((team,index) => React.createElement('li',{key:index},team))
+        );
+
+        const playerList = React.createElement('ul',
+        null,
+        players.map((player,index) => React.createElement('li',{key:index},player))
+        );
+
+        const football = React.createElement('div', null , 
+        React.createElement('h1',null,'Teams'), teamsList,
+        React.createElement('h1',null,'Players'),playerList);
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(football);
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creating Components Via ES6 Classes</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script>
+
+        const teams = ['Real Madrid', 'Manchester City', 'Liverpool', 'Bayern Munich', 'Manchester United','Barcelona'];
+        const players = ['Cristiano Ronaldo', 'Wayne Rooney', 'Mo Salah', 'Luis Diaz','Lionel Messi','Vinicius Jr', 'Kylian Mbappe'];
+
+        class ItemsList extends React.Component {
+            render() {
+                return React.createElement('ol',
+                null,
+                this.props.items.map((item,index) => React.createElement('li',{key:index},item))
+                )
+            }
+        }
+
+        class App extends React.Component {
+            render() {
+                return React.createElement('div',null,
+                React.createElement('h1',null,'Teams'),
+                React.createElement(ItemsList, {items:teams},null),
+                React.createElement('h1',null,'Players'),
+                React.createElement(ItemsList, {items:players},null)
+                )
+            }
+        }
+
+        const app = React.createElement(App, null, null);
+        
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(app);
+
+    </script>
+</body>
+</html>

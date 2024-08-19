@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My JSX Example</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.js"></script>
+	<link rel="stylesheet" href="example5.css">
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const footballData = [
+            {
+                "teamName" : "Liverpool",
+                "players" : [
+                    {"name": "Mo Salah", "position": "right wing", "number": 11},
+                    {"name": "Luiz Diaz", "position": "left wing", "number": 7},
+                    {"name": "Darwin Nunez", "position": "center forward", "number": 9},
+                    {"name": "Alexis Mcallister", "position": "center mid", "number": 10}
+                ]
+            }, {
+                "teamName" : "Real Madrid",
+                "players" : [
+                    {"name": "Rodrygo", "position": "right wing", "number": 11},
+                    {"name": "Vinicius Jr", "position": "left wing", "number": 7},
+                    {"name": "Kylian Mbappe", "position": "center forward", "number": 9},
+                    {"name": "Luka Modric", "position": "center mid", "number": 10}
+                ]
+            }
+        ];
+        // JSX syntax    
+        function Football(props) {
+            return (
+                <div>
+                    <h2>{props.teamName}</h2>
+                    <ul className="players"> {
+                        props.players.map((p,i) => <li key={i}>{p.name} {p.position} {p.number}</li>)
+                    }
+                    </ul>
+
+                </div>
+            )
+        }
+        // JSX Syntax
+        function App(props) {
+            return (
+                <>
+                    <h1>{props.title}</h1> {
+                        props.football.map((r, i) => <Football key={i} {...r}/>)
+                    }
+                </>
+            )
+        }
+        
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(
+            <App title="Totally Awesome Teams" football={footballData} />
+        )
+    </script>
+</body>
+</html>
